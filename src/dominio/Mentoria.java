@@ -1,6 +1,7 @@
 package dominio;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Mentoria extends Conteudo {
     
@@ -8,7 +9,9 @@ public class Mentoria extends Conteudo {
     
     @Override
     public String toString() {
-        return "Mentoria [titulo=" + getTitulo() + ", descricao=" + getDescricao() + ", data=" + data + "]";
+        return "Mentoria: " + getTitulo() 
+        + "\nDescricao: " + getDescricao() 
+        + "\nData:" + data + "\n";
     }
     @Override
     public double calcularXp() {
@@ -21,4 +24,19 @@ public class Mentoria extends Conteudo {
         this.data = data;
     }
     
+    public static Mentoria criarMentoria(Scanner sc){
+         
+        Mentoria Mentoria = new Mentoria();
+        System.out.println("Digite o título do Mentoria :");
+        Mentoria.setTitulo(sc.nextLine());
+
+        System.out.println("Digite a descrição do Mentoria :");
+        Mentoria.setDescricao(sc.nextLine());
+
+        Mentoria.setData(LocalDate.now());
+
+        sc.nextLine();
+        return Mentoria;
+    } 
+
 }

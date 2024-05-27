@@ -5,47 +5,36 @@ import dominio.Curso;
 import dominio.Dev;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-
-        Curso curso = new Curso();
-        curso.setTitulo("curso java");
-        curso.setDescricao("Descrição curso java");
-        curso.setCargaHoraria(8);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Bem vindo a abstracao do Bootcamp em Java");
         
-        Curso curso1 = new Curso();
-        curso1.setTitulo("curso js");
-        curso1.setDescricao("Descrição curso js");
-        curso1.setCargaHoraria(5);
-
-        Conteudo curso2 = new Curso();
-        curso2.setTitulo("Polimorfismo");
-        curso2.setDescricao("descricao polimorfismo");
-        if(curso2 instanceof Curso){
-            ((Curso)curso2).setCargaHoraria(5);
-        }
-
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria java");
-        mentoria.setDescricao("descricao mentoria java");
-        mentoria.setData(LocalDate.now());
-
-        /*System.out.println(curso);
-        System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);
-        */
-
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setName("bootcamp java developer");
         bootcamp.setDescricao("descricao bootcamp java developes");
-        bootcamp.getConteudos().add(curso);
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
 
+
+        System.out.println("Quantos curso gostaria de criar? ao " + bootcamp.getName());
+        int quantidadeDeCursos = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < quantidadeDeCursos; i++){
+            Curso curso = Curso.criarCurso(sc);
+            bootcamp.getConteudos().add(curso);
+        }
+        
+        System.out.println("Quantos Mentorias gostaria de criar? ao " + bootcamp.getName());
+        int quantidadeDeMentorias = sc.nextInt();
+
+        for (int i = 0; i < quantidadeDeMentorias; i++){
+            Mentoria mentoria = Mentoria.criarMentoria(sc);
+            bootcamp.getConteudos().add(mentoria);
+        }
+        
+        
         Dev dev1 = new Dev();
         dev1.setName("Kaio");
         dev1.inscreverBootcamp(bootcamp);
